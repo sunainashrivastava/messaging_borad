@@ -1,0 +1,31 @@
+<%= render "devise/shared/navbar" %>
+<div class="container-100">
+  <div class="wrap-login100 p-l-75 p-r-75 p-t-20 p-b-20">
+    <h3><%= edit_action?(params[:action]) ? 'Edit ' : 'New' %> Post </h3>
+    <%= form_with(model: post, local: true) do |form| %>
+      <% if post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+          <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="wrap-input100">
+        <%= form.text_field :title, class: 'input100', placeholder: 'Post Title' %>
+      </div>
+
+      <div class="wrap-input100">
+        <%= form.text_field :body, class: 'input100', placeholder: 'Post Description' %>
+      </div>
+
+      <div class="actions p-t-10">
+        <%= form.submit 'save', class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

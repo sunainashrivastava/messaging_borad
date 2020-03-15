@@ -1,0 +1,33 @@
+<%= render "devise/shared/navbar" %>
+<div class="limiter">
+  <div class="container-100">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+      <span class="login100-form-title p-b-33">
+        Account Login
+      </span>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="wrap-input100">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input100', placeholder: 'Email' %>
+        </div>
+        <div class="wrap-input100 rs1">
+          <%= f.password_field :password, autocomplete: "current-password", class: 'input100', placeholder: 'Password' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="container-login100-form-btn m-t-20">
+          <%= f.submit "Log in", class: 'login100-form-btn' %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </form>
+  </div>
+</div>
+
+

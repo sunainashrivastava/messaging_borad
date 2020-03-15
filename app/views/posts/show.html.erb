@@ -1,0 +1,50 @@
+<%= render "devise/shared/navbar" %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="limiter">
+  <div class="container-100">
+    <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
+      <span class="login100-form-title p-b-33">
+        <%= @post.title %>
+      </span>
+      <p>
+        <%= @post.body %>
+      </p>
+
+      <p>
+        <b><%= "Written By #{@post.user.name.capitalize}" %></b>
+      </p>
+
+      <% if @post.user.eql?(current_user) %>
+        <%= link_to 'Edit', edit_post_path(@post) %> | 
+        <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+      <% end %>
+      <%= link_to 'Back', posts_path %>
+      <hr />
+      <div>
+        <h3 class="osr-family-family">Comments</h3>
+        <% @post.comments.desc.each do |comment| %>
+          
+          <p>
+            <%= "#{comment.body} - #{author_name(comment.user)}" %> 
+          </p>
+        <% end %>
+
+        <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+          <p>
+            <%= form.text_area :body, autofocus: true, placeholder: 'Comment here...' %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+          </p>
+          <p>
+            <%= form.submit 'save', class: 'btn btn-default' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ 

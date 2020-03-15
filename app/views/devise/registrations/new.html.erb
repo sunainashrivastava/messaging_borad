@@ -1,0 +1,41 @@
+<%= render "devise/shared/navbar" %>
+
+<div class="limiter">
+  <div class="container-100">
+    <div class="wrap-100 p-l-55 p-r-55 p-t-65 p-b-50">
+      <span class="login100-form-title p-b-33">
+        Create an Account
+      </span>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="wrap-input100">
+          <%= f.text_field :name, autofocus: true,  class: 'input100', placeholder: 'Name' %>
+        </div>
+
+        <div class="wrap-input100">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input100', placeholder: 'Email' %>
+        </div>
+
+
+        <div class="wrap-input100 rs1">
+          <%= f.password_field :password, autocomplete: "new-password", class: 'input100', placeholder: 'Password' %>
+        </div>
+
+        <div class="wrap-input100">
+          <%= f.password_field :password_confirmation, autofocus: true, class: 'input100', placeholder: 'Re-enter Password' %>
+        </div>
+
+        <div class="wrap-input100">
+          <%= f.text_field :bio, autofocus: true, class: 'input100', placeholder: 'About Me' %>
+        </div>
+       
+        <div class="container-login100-form-btn m-t-20">
+          <%= f.submit "Sign up", class: 'login100-form-btn' %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </form>
+  </div>
+</div>
